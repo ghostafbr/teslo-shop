@@ -1,7 +1,8 @@
 import {ProductGrid, Title} from '@/components';
+import {Product} from '@/interfaces';
 import {initialData} from '@/seed/seed';
 
-const products = initialData.products;
+const products: Product[] = initialData.products;
 
 export default function Home() {
     return (
