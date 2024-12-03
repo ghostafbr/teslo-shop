@@ -5,14 +5,14 @@ import {initialData} from '@/seed/seed';
 import {Product} from '@/interfaces';
 
 interface Props {
-    params: {
+    params: Promise<{
         slug: string;
-    }
+    }>
 }
 
-const ProductPage = ({params}: Props) => {
+const ProductPage = async ({params}: Props) => {
 
-    const { slug } = params;
+    const { slug } =  await params;
     const product: Product | undefined = initialData.products.find(product => product.slug === slug);
 
     if (!product) {

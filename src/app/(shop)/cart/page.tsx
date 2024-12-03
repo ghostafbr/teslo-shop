@@ -4,7 +4,6 @@ import {Product} from '@/interfaces';
 import {Title} from '@/components';
 import Image from 'next/image';
 import Link from 'next/link';
-import {redirect} from 'next/navigation';
 
 const productsInCart: Product[] = [
     initialData.products[0],
@@ -12,9 +11,7 @@ const productsInCart: Product[] = [
     initialData.products[2],
 ];
 
-export default function () {
-
-    // redirect('/empty');
+export default function CartPage() {
 
     return (
 

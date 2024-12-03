@@ -1,7 +1,11 @@
+'use client';
+
 import {PageNotFound} from '@/components';
 
-export default function GenderNotFound() {
+const notFound = () => {
     return (
         <PageNotFound />
     );
 };
+
+export default notFound;

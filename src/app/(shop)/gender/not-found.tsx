@@ -1,7 +1,9 @@
 import {PageNotFound} from '@/components';
 
-export default function () {
+const notFound = () => {
     return (
         <PageNotFound />
     );
 };
+
+export default notFound;

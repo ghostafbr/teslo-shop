@@ -2,7 +2,7 @@
 import {titleFont} from '@/config/fonts';
 import {useUIStore} from '@/store';
 import Link from 'next/link';
-import {IoCarOutline, IoCartOutline, IoSearchOutline} from 'react-icons/io5';
+import {IoCartOutline, IoSearchOutline} from 'react-icons/io5';
 
 export const TopMenu = () => {
     const openSideMenu = useUIStore((state) => state.openSideMenu);
@@ -20,9 +20,9 @@ export const TopMenu = () => {
 
             {/* center menu*/}
             <div className='hidden sm:block'>
-                <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100 ' href='/category/men'>Men</Link>
-                <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100 ' href='/category/women'>Women</Link>
-                <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100 ' href='/category/kid'>Kids</Link>
+                <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100 ' href='/gender/men'>Men</Link>
+                <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100 ' href='/gender/women'>Women</Link>
+                <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100 ' href='/gender/kid'>Kids</Link>
             </div>
 
             {/* Search, cart, menu*/}

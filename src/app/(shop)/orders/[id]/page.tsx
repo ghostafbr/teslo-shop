@@ -3,7 +3,6 @@ import {Product} from '@/interfaces';
 import {Title} from '@/components';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
 import {IoCardOutline, IoCartOutline} from 'react-icons/io5';
 
 const productsInCart: Product[] = [
@@ -13,14 +12,14 @@ const productsInCart: Product[] = [
 ];
 
 interface Props {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
-export default function ({params}: Props) {
+const orderPage = async ({params}: Props) => {
 
-    const {id} = params;
+    const {id} = await params;
 
     // Todo: Validate if the order exists
     // redirect()
@@ -130,3 +129,6 @@ export default function ({params}: Props) {
         </div>
     );
 };
+
+
+export default orderPage;

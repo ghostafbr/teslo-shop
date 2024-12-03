@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:latest  # Usa la última versión de PostgreSQL
+    restart: always  # Reinicia el contenedor si se detiene
+    container_name: teslo-shop
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"  # Expone el puerto 5432 para conexiones locales
+    volumes:
+      - postgres:/var/lib/postgresql/data  # Almacena los datos de PostgreSQL de forma persistente
+
+volumes:
+  postgres:
+    driver: local  # Volumen local para almacenar los datos de PostgreSQL
