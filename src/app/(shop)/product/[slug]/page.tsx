@@ -1,7 +1,10 @@
-import {ProductMobileSlideShow, ProductSlideShow, QuantitySelector, SizeSelector} from '@/components';
+export  const revalidate = 604800;
+
+import {ProductMobileSlideShow, ProductSlideShow, QuantitySelector, SizeSelector, StockLabel} from '@/components';
+import {Metadata, ResolvingMetadata} from 'next';
+import {getProductBySlug} from '@/actions';
 import {notFound} from 'next/navigation';
 import {titleFont} from '@/config/fonts';
-import {initialData} from '@/seed/seed';
 import {Product} from '@/interfaces';
 
 interface Props {
@@ -10,10 +13,36 @@ interface Props {
     }>
 }
 
+export async function generateMetadata(
+    { params, }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const slug: string = (await params).slug
+
+    // fetch data
+    const product = await getProductBySlug(slug);
+
+    // optionally access and extend (rather than replace) parent metadata
+    // const previousImages = (await parent).openGraph?.images || []
+
+    return {
+        title: product?.title ?? 'Product not found',
+        description: product?.description ?? '',
+        openGraph: {
+            title: product?.title ?? 'Product not found',
+            description: product?.description ?? '',
+            // images: ['/some-specific-page-image.jpg', ...previousImages], // https://miweb.com/product/image.png
+            images: [`/products/${product?.images[1]}`],
+        },
+    }
+}
+
+
 const ProductPage = async ({params}: Props) => {
 
     const { slug } =  await params;
-    const product: Product | undefined = initialData.products.find(product => product.slug === slug);
+    const product: Product | null = await getProductBySlug(slug);
 
     if (!product) {
         notFound();
@@ -42,6 +71,8 @@ const ProductPage = async ({params}: Props) => {
 
             {/*Details*/}
             <div className='col-span-1 px-5'>
+
+                <StockLabel slug={product.slug}/>
                 <h1 className={` ${titleFont.className} antialiased font-bold text-xl`}>
                     {product?.title}
                 </h1>
