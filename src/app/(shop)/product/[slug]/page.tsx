@@ -1,5 +1,6 @@
 export  const revalidate = 604800;
 
+import AddToCart from '@/app/(shop)/product/[slug]/ui/AddToCart';
 import {ProductMobileSlideShow, ProductSlideShow, QuantitySelector, SizeSelector, StockLabel} from '@/components';
 import {Metadata, ResolvingMetadata} from 'next';
 import {getProductBySlug} from '@/actions';
@@ -78,21 +79,7 @@ const ProductPage = async ({params}: Props) => {
                 </h1>
                 <p className='text-lg mb-5'>${product.price}</p>
 
-                {/*Size selector*/}
-                <SizeSelector
-                    selectedSize={product.sizes[0]}
-                    availableSizes={product.sizes}
-                />
-
-                {/*Qt selector*/}
-                <QuantitySelector
-                    quantity={2}
-                />
-
-                {/*Button*/}
-                <button className='btn-primary my-5'>
-                    Add to cart
-                </button>
+                <AddToCart product={product}/>
 
                 {/*Description*/}
                 <h3 className='font-bold text-sm'>Description</h3>
