@@ -1,4 +1,3 @@
-
 export * from '@/components/product/slideshow/ProductMobileSlideShow';
 export * from '@/components/product/quantity-selector/QuantitySelector';
 export * from '@/components/products/product-grid/ProductGridItem';
@@ -12,3 +11,4 @@ export * from '@/components/ui/top-menu/TopMenu';
 export * from '@/components/ui/footer/Footer';
 export * from '@/components/sidebar/Sidebar';
 export * from '@/components/ui/title/Title';
+export * from '@/components/provider/Provider';
